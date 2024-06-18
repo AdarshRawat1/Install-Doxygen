@@ -22,3 +22,7 @@ runs:
         sudo make install
         cd ..
         rm -rf doxygen-${DOXYGEN_VERSION}* 
+
+branding:
+  icon: "download-cloud"
+  color: "blue"
