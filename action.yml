@@ -1,0 +1,24 @@
+name: "install-doxygen"
+description: "Installs  Specified Version of Doxygen"
+inputs:
+  version:
+    description: "The Doxygen version to install"
+    required: false
+    default: "1.9.1"
+runs:
+  using: "composite"
+  steps:
+    - name: Export Doxygen version in environment
+      shell: bash
+      run: |
+        echo "DOXYGEN_VERSION=${{ inputs.version }}" >> $GITHUB_ENV
+
+    - name: "Installation"
+      shell: bash
+      run: |
+        wget https://github.com/doxygen/doxygen/releases/download/Release_${DOXYGEN_VERSION//./_}/doxygen-${DOXYGEN_VERSION}.linux.bin.tar.gz
+        tar xzvf doxygen-${DOXYGEN_VERSION}.linux.bin.tar.gz
+        cd doxygen-${DOXYGEN_VERSION}
+        sudo make install
+        cd ..
+        rm -rf doxygen-${DOXYGEN_VERSION}* 
